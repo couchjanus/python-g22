@@ -1,0 +1,56 @@
+{% extends "employee/base.html" %}
+
+{% block title %}Create Department{% endblock %}
+{% block sidebar %}
+{% include "employee/sidebar.html" %}
+{% endblock %}
+
+{% block main %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a class="nav-link" href="{% url 'employees' %}"><button type="button" class="btn btn-sm btn-outline-secondary">All Employees</button></a>
+                <a class="nav-link" href=""><button type="button" class="btn btn-sm btn-outline-secondary">Export</button></a>
+            
+                <a class="nav-link" href=""><button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                    <span data-feather="calendar"></span>
+                    This week
+                </button></a>
+            
+            </div>
+        </div>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- <form action="" method="post" class="form-inline">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="form-group row error">
+            {{ form.name.errors }}
+            <!-- Список ошибок можно вывести используя {{ form.name_of_field.errors }}. -->
+            <label class="mr-2" for="{{ form.name.id_for_label }}">{{ form.name.label }}: </label> 
+            <!-- Если потребуется более тонкая настройка отображения ошибок, вы можете это организовать с помощью цикла по ним: -->
+            <div class="form-control">{{ form.name }}
+                <span class="help-inline">
+                    {% for error in form.name.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        
+        </div>
+        <button type="submit" class="btn btn-primary ml-2">Submit</button>
+    </form> -->
+
+</main>
+{% endblock %}
+
+{% block footer %}
+{% include "employee/footer.html" %}
+{% endblock footer %}
