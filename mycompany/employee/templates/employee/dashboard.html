@@ -1,9 +1,11 @@
-{% extends "employee/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}Dashboard{% endblock %}
+
 {% block sidebar %}
-{% include "employee/sidebar.html" %}
+  {% include "employee/sidebar.html" %}
 {% endblock %}
+
 
 {% block main %}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -24,5 +26,5 @@
 {% endblock %}
 
 {% block footer %}
-{% include "employee/footer.html" %}
+  {% include "employee/footer.html" %}
 {% endblock footer %}

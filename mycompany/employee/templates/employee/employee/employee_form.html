@@ -1,4 +1,4 @@
-{% extends "employee/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Create Department{% endblock %}
 {% block sidebar %}
@@ -26,28 +26,113 @@
 
     <form action="" method="post">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
 
-    <!-- <form action="" method="post" class="form-inline">
-        {% csrf_token %}
-        {{ form.non_field_errors }}
-        <div class="form-group row error">
-            {{ form.name.errors }}
-            <!-- Список ошибок можно вывести используя {{ form.name_of_field.errors }}. -->
-            <label class="mr-2" for="{{ form.name.id_for_label }}">{{ form.name.label }}: </label> 
-            <!-- Если потребуется более тонкая настройка отображения ошибок, вы можете это организовать с помощью цикла по ним: -->
-            <div class="form-control">{{ form.name }}
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <label class="mr-2" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}: </label> 
+                {{ form.first_name }}
                 <span class="help-inline">
-                    {% for error in form.name.errors %}{{ error }}{% endfor %}
+                    {% for error in form.first_name.errors %}{{ error }}{% endfor %}
                 </span>
             </div>
-        
+            <div class="col">
+                <!-- Middle name -->
+                <label class="mr-2" for="{{ form.middle_name.id_for_label }}">{{ form.middle_name.label }}: </label> 
+                {{ form.middle_name }}
+                <span class="help-inline">
+                    {% for error in form.middle_name.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <label class="mr-2" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}: </label> 
+                {{ form.last_name }}
+                <span class="help-inline">
+                    {% for error in form.last_name.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary ml-2">Submit</button>
-    </form> -->
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- email -->
+                <label class="mr-2" for="{{ form.email.id_for_label }}">{{ form.email.label }}: </label> 
+                {{ form.email }}
+                <span class="help-inline">
+                    {% for error in form.email.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+            <div class="col">
+                <!-- birth_date -->
+                <label class="mr-2" for="{{ form.birth_date.id_for_label }}">{{ form.birth_date.label }}: </label> 
+                {{ form.birth_date }}
+                <span class="help-inline">
+                    {% for error in form.birth_date.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+            <div class="col">
+                <!-- monthly_salary -->
+                <label class="mr-2" for="{{ form.monthly_salary.id_for_label }}">{{ form.monthly_salary.label }}: </label> 
+                {{ form.monthly_salary }}
+                <span class="help-inline">
+                    {% for error in form.monthly_salary.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- department -->
+                <label class="mr-2" for="{{ form.department.id_for_label }}">{{ form.department.label }}: </label> 
+                {{ form.department }}
+                <span class="help-inline">
+                    {% for error in form.department.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+            <div class="col">
+                <!-- position -->
+                <label class="mr-2" for="{{ form.position.id_for_label }}">{{ form.position.label }}: </label> 
+                {{ form.position }}
+                <span class="help-inline">
+                    {% for error in form.position.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
 
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- gender -->
+                <label class="mr-2" for="{{ form.gender.id_for_label }}">{{ form.gender.label }}: </label> 
+                {{ form.gender }}
+                <span class="help-inline">
+                    {% for error in form.gender.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+            <div class="col">
+                <!-- active -->
+                <label class="mr-2" for="{{ form.active.id_for_label }}">{{ form.active.label }}: </label> 
+                {{ form.active }}
+                <span class="help-inline">
+                    {% for error in form.active.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- bio -->
+                <label class="mr-2" for="{{ form.bio.id_for_label }}">{{ form.bio.label }}: </label> 
+                {{ form.bio }}
+                <span class="help-inline">
+                    {% for error in form.bio.errors %}{{ error }}{% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+
+    
 </main>
 {% endblock %}
 

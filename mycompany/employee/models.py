@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse 
 # Create your models here.
 
 class AbstractBaseModel(models.Model):
@@ -26,6 +26,10 @@ class Department(AbstractBaseModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular department instance."""
+        return reverse('department-detail', args=[str(self.id)])
+
 class Position(AbstractBaseModel):
     """Position represents the sector a set of employees belongs to."""
 
@@ -36,6 +40,10 @@ class Position(AbstractBaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular position instance."""
+        return reverse('position-detail', args=[str(self.id)])
 
 class Employee(AbstractBaseModel):
     """Employee represents the people from a given department."""
@@ -65,6 +73,9 @@ class Employee(AbstractBaseModel):
     def age(self):
         from datetime import date
         return date.today().year - self.birth_date.year - ((date.today().month, date.today().day) < (self.birth_date.month, self.birth_date.day)) if self.birth_date else None
+
+    def get_absolute_url(self):
+        return reverse('employee-detail', args=[str(self.id)])
     
     def __str__(self):
         return ' ' .join([self.first_name, self.middle_name, self.last_name])

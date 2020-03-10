@@ -1,4 +1,4 @@
-{% extends "employee/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block title %}Departments list{% endblock %}
 {% block sidebar %}
@@ -27,6 +27,7 @@
             <tr>
               <th>#</th>
               <th>Position name</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +35,11 @@
             <tr>
               <td>{{ position.id }}</td>
               <td>{{ position.name }}</td>
+              <td>
+                <a href="{{ position.get_absolute_url }}"><button class="btn btn-default"><span data-feather="eye"></span> View</button></a>
+                <a href="{% url "position-update" position.pk %}"><button class="btn btn-primary"><span data-feather="edit"></span> Edit</button></a>
+                <a href="{% url "position-delete" position.pk %}"><button class="btn btn-danger"><span data-feather="delete"></span> Delete</button></a>
+              </td>
             </tr>
           {% endfor %}
           </tbody>

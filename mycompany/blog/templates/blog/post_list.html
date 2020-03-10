@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}My Blog{% endblock %}  
+
+{% block main %}
+<main role="main" class="container-fluid">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">My Blog</h1>
+            <p>This is a template for a simple marketing or informational website. It includes a large callout
+                called a jumbotron and three supporting pieces of content. Use it as a starting point to create
+                something more unique.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4">
+                <h2>  
+                    <a href="{{ post.get_absolute_url }}">  
+                     {{ post.title }}  
+                    </a>  
+                  </h2> 
+                  <p class="date">  
+                    Published {{ post.publish }} by {{ post.author }}  
+                  </p>  
+                  {{ post.body|truncatewords:30|linebreaks }}  
+                <p><a class="btn btn-secondary" href="{{ post.get_absolute_url }}" role="button">View details &raquo;</a></p>
+            </div>
+            {% endfor %}  
+
+        </div>
+
+
+    </div> <!-- /container -->
+</main>
+{% endblock main %}
