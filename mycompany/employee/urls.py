@@ -1,7 +1,4 @@
 from django.urls import path
-
-# from employee.views import DashboardView, PositionListView, EmployeeListView, DepartmentListView, DepartmentCreate, PositionCreate, EmployeeCreate
-
 from . import views
 
 urlpatterns = [

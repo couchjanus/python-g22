@@ -22,6 +22,7 @@ class Department(AbstractBaseModel):
 
     class Meta:
         ordering = ["name", "-updated_at"]
+        permissions = (("can_create_department", "Can create department"),("can_edit_department", "Can edit department"),("can_delete_department", "Can delete department"),)
 
     def __str__(self):
         return self.name
@@ -37,6 +38,7 @@ class Position(AbstractBaseModel):
 
     class Meta:
         ordering = ["name", "-updated_at"]
+        permissions = (("can_create_position", "Can create position"),("can_edit_position", "Can edit position"),("can_delete_position", "Can delete position"),)
 
     def __str__(self):
         return self.name
@@ -69,6 +71,7 @@ class Employee(AbstractBaseModel):
     class Meta:
         verbose_name_plural = "Employees"
         ordering = ["first_name", "-updated_at"]
+        permissions = (("can_create_employee", "Can create employee"),("can_edit_employee", "Can edit employee"),("can_delete_employee", "Can delete employee"),)
 
     def age(self):
         from datetime import date
@@ -79,3 +82,10 @@ class Employee(AbstractBaseModel):
     
     def __str__(self):
         return ' ' .join([self.first_name, self.middle_name, self.last_name])
+
+    @property
+    def name(self):
+        """
+        Возвращаем полное имя
+        """
+        return "%s %s" % (self.first_name, self.last_name)

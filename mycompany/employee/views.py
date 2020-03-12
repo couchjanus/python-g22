@@ -4,10 +4,24 @@ from django.shortcuts import render
 from .models import Department, Position, Employee
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
 from django.urls import reverse
-
 from django.views.generic import TemplateView
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+
+@login_required
+def my_view(request):
+    pass
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+# mixin для представлений на основе классов.
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+
+# class DashboardView(LoginRequiredMixin, TemplateView):
+#     template_name = "employee/dashboard.html"
 
 class DashboardView(TemplateView):
     template_name = "employee/dashboard.html"
@@ -53,7 +67,10 @@ class PositionDetailView(DetailView):
     model = Position
     template_name = 'employee/position/position_detail.html'
 
-class PositionCreate(CreateView):
+class PositionCreate(PermissionRequiredMixin, CreateView):
+    permission_required = 'employee.can_create_position'
+    # Or multiple permissions
+    # permission_required = ('employee.can_edit_position', 'employee.can_create_position')
     model = Position
     fields = '__all__'
     template_name = 'employee/position/position_form.html'
@@ -76,7 +93,7 @@ class PositionDelete(DeleteView):
     def get_success_url(self):
         return reverse('positions')
 
-class EmployeeListView(ListView):
+class EmployeeListView(LoginRequiredMixin, ListView):
     model = Employee
     context_object_name = 'employees'
     template_name = 'employee/employee/employee_list.html'

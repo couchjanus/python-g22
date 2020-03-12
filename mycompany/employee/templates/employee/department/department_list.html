@@ -11,7 +11,9 @@
     <h1 class="h2">{{title}}</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
-        <a class="nav-link" href="{% url 'department_create' %}"><button type="button" class="btn btn-sm btn-outline-secondary">Add New</button></a>
+        {% if perms.employee.can_create_department %}
+          <a class="nav-link" href="{% url 'department_create' %}"><button type="button" class="btn btn-sm btn-outline-secondary">Add New</button></a>
+        {% endif %}
         <a class="nav-link" href=""><button type="button" class="btn btn-sm btn-outline-secondary">Export</button></a>
         <a class="nav-link" href=""><button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
         <span data-feather="calendar"></span>
@@ -38,8 +40,12 @@
               
               <td>
                 <a href="{{ department.get_absolute_url }}"><button class="btn btn-default"><span data-feather="eye"></span> View</button></a>
+                {% if perms.employee.can_edit_department %}
                 <a href="{% url "department-update" department.pk %}"><button class="btn btn-primary"><span data-feather="edit"></span> Edit</button></a>
+                {% endif %}
+                {% if perms.employee.can_delete_department %}
                 <a href=""><button class="btn btn-danger"><span data-feather="delete"></span> Delete</button></a>
+                {% endif %}
               </td>
             </tr>
 
