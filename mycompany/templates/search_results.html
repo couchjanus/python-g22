@@ -1,0 +1,25 @@
+<!-- templates/search_results.html -->
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+{% block sidebar %}
+    {% include "employee/sidebar.html" %}
+{% endblock %}
+
+{% block main %}
+<main role="main" class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mx-auto mt-4">
+                <h1>Search Results</h1>
+                <ul>
+                {% for obj in object_list %}
+                    <li>
+                    {{ obj.id }}, {{ obj.name }}
+                    </li>
+                {% endfor %}
+                </ul>
+        </div>
+      </div>
+    </div> <!-- /container -->
+</main>
+{% endblock %}

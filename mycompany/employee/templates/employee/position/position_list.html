@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Departments list{% endblock %}
+
+{% block search %}
+    {% include "employee/position/position_search_form.html" %}
+{% endblock search %}
+
 {% block sidebar %}
   {% include "employee/sidebar.html" %}
 {% endblock %}

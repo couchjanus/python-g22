@@ -25,5 +25,8 @@ urlpatterns = [
 
     path('employee/<int:pk>',
          views.EmployeeDetailView.as_view(), name='employee-detail'),
-    
+
+    path('employee-search/', views.SearchEmployeesView.as_view(), name='employee_search_results'),
+    path('position-search/', views.SearchPositionsView.as_view(), name='position_search_results'),
+    path('department-search/', views.SearchDepartmentsView.as_view(), name='department_search_results'),
 ]

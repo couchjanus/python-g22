@@ -1,4 +1,5 @@
 # employee/views.py 
+
 from django.shortcuts import render
 
 from .models import Department, Position, Employee
@@ -9,6 +10,8 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
+
+from django.db.models import Q # импорт Q 
 
 @login_required
 def my_view(request):
@@ -117,3 +120,27 @@ class EmployeeUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse('employees')
+
+class SearchEmployeesView(ListView):
+    model = Employee
+    template_name = 'search_results.html'
+
+    # def get_queryset(self):
+    #     return Employee.objects.filter(Q(first_name__icontains='Engry') | Q(last_name__icontains='Dog'))
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Employee.objects.filter(Q(first_name__icontains=query) | Q(last_name__icontains=query)|Q(middle_name__icontains=query)|Q(email__icontains=query))
+        return object_list
+
+class SearchPositionsView(ListView):
+    model = Position
+    template_name = 'search_results.html'
+
+class SearchDepartmentsView(ListView):
+    model = Department
+    template_name = 'search_results.html'
+    # queryset = Department.objects.filter(name__icontains='CEO') 
+
+    # def get_queryset(self):
+    #     return Department.objects.filter(name__icontains='CEO')
