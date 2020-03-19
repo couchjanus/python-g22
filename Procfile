@@ -1,0 +1,1 @@
+web: gunicorn couchdj:app --log-file -
